@@ -1,4 +1,4 @@
-# Google Play Games Services Plugin for Godot 3
+# Google Play Games Services Plugin for Godot 3.5.2
 This is an Android Play Games Services plugin for Godot Game Engine 3.5.2
 
 [![Android](https://img.shields.io/badge/Platform-Android-brightgreen.svg)](https://developer.android.com)
