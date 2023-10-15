@@ -71,8 +71,7 @@ class PlayGameServicesGodot(godot: Godot) : GodotPlugin(godot), AchievementsList
         val SIGNAL_LEADERBOARD_SCORE_RETRIEVED = SignalInfo("_on_leaderboard_score_retrieved", String::class.java, String::class.java)
         val SIGNAL_LEADERBOARD_SCORE_RETRIEVED_FAILED = SignalInfo("_on_leaderboard_score_retrieve_failed", String::class.java)
         val SIGNAL_LEADERBOARD_SCORE_SUBMITTED = SignalInfo("_on_leaderboard_score_submitted", String::class.java)
-        val SIGNAL_LEADERBOARD_SCORE_SUBMITTED_FAILED =
-            SignalInfo("_on_leaderboard_score_submitting_failed", String::class.java)
+        val SIGNAL_LEADERBOARD_SCORE_SUBMITTED_FAILED = SignalInfo("_on_leaderboard_score_submitting_failed", String::class.java)
         val SIGNAL_EVENT_SUBMITTED = SignalInfo("_on_event_submitted", String::class.java)
         val SIGNAL_EVENT_SUBMITTED_FAILED = SignalInfo("_on_event_submitting_failed", String::class.java)
         val SIGNAL_EVENTS_LOADED = SignalInfo("_on_events_loaded", String::class.java)

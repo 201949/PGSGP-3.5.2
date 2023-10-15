@@ -1,11 +1,11 @@
 extends Control
 
 #REPLACE BELOW IDS WITH YOUR OWN
-const UNLOCK_ACHIEVEMENT = "CgkIz_-Zz4gFEAIQAg"
-const REVEAL_ACHIEVEMENT = "CgkIz_-Zz4gFEAIQAg"
-const INCREMENT_ACHIEVEMENT = "CgkIz_-Zz4gFEAIQAw"
-const SET_ACHIEVEMENT_STEPS = "CgkIz_-Zz4gFEAIQAw"
-const LEADERBOARD_ID = "CgkIz_-Zz4gFEAIQBQ"
+const UNLOCK_ACHIEVEMENT = "CgkIqt-jg_MWEAIQAQ"
+const REVEAL_ACHIEVEMENT = "CgkIqt-jg_MWEAIQAQ"
+const INCREMENT_ACHIEVEMENT = "CgkIqt-jg_MWEAIQAQ"
+const SET_ACHIEVEMENT_STEPS = "CgkIqt-jg_MWEAIQAQ"
+const LEADERBOARD_ID = "CgkIqt-jg_MWEAIQAQ"
 
 var play_games_services
 
@@ -14,27 +14,27 @@ func _ready():
 	if Engine.has_singleton("GodotPlayGamesServices"):
 		play_games_services = Engine.get_singleton("GodotPlayGamesServices")
 
-		play_games_services.connect("_on_sign_in_success", Callable(self, "_on_sign_in_success"))
-		play_games_services.connect("_on_sign_in_failed", Callable(self, "_on_sign_in_failed"))
-		play_games_services.connect("_on_sign_out_success", Callable(self, "_on_sign_out_success"))
-		play_games_services.connect("_on_sign_out_failed", Callable(self, "_on_sign_out_failed"))
-		play_games_services.connect("_on_achievement_unlocked", Callable(self, "_on_achievement_unlocked"))
-		play_games_services.connect("_on_achievement_unlocking_failed", Callable(self, "_on_achievement_unlocking_failed"))
-		play_games_services.connect("_on_achievement_revealed", Callable(self, "_on_achievement_revealed"))
-		play_games_services.connect("_on_achievement_revealing_failed", Callable(self, "_on_achievement_revealing_failed"))
-		play_games_services.connect("_on_achievement_incremented", Callable(self, "_on_achievement_incremented"))
-		play_games_services.connect("_on_achievement_incrementing_failed", Callable(self, "_on_achievement_incrementing_failed"))
-		play_games_services.connect("_on_achievement_steps_set", Callable(self, "_on_achievement_steps_set"))
-		play_games_services.connect("_on_achievement_steps_setting_failed", Callable(self, "_on_achievement_steps_setting_failed"))
-		play_games_services.connect("_on_leaderboard_score_submitted", Callable(self, "_on_leaderboard_score_submitted"))
-		play_games_services.connect("_on_leaderboard_score_submitting_failed", Callable(self, "_on_leaderboard_score_submitting_failed"))
-		play_games_services.connect("_on_game_saved_success", Callable(self, "_on_game_saved_success"))
-		play_games_services.connect("_on_game_saved_fail", Callable(self, "_on_game_saved_fail"))
-		play_games_services.connect("_on_game_load_success", Callable(self, "_on_game_load_success"))
-		play_games_services.connect("_on_game_load_fail", Callable(self, "_on_game_load_fail"))
-		play_games_services.connect("_on_create_new_snapshot", Callable(self, "_on_create_new_snapshot"))
-		play_games_services.connect("_on_player_info_loaded", Callable(self, "_on_player_info_loaded"))
-		play_games_services.connect("_on_player_info_loading_failed", Callable(self, "_on_player_info_loading_failed"))
+		play_games_services.connect("_on_sign_in_success", self, "_on_sign_in_success")
+		play_games_services.connect("_on_sign_in_failed", self, "_on_sign_in_failed")
+		play_games_services.connect("_on_sign_out_success", self, "_on_sign_out_success")
+		play_games_services.connect("_on_sign_out_failed", self, "_on_sign_out_failed")
+		play_games_services.connect("_on_achievement_unlocked", self, "_on_achievement_unlocked")
+		play_games_services.connect("_on_achievement_unlocking_failed", self, "_on_achievement_unlocking_failed")
+		play_games_services.connect("_on_achievement_revealed", self, "_on_achievement_revealed")
+		play_games_services.connect("_on_achievement_revealing_failed", self, "_on_achievement_revealing_failed")
+		play_games_services.connect("_on_achievement_incremented", self, "_on_achievement_incremented")
+		play_games_services.connect("_on_achievement_incrementing_failed", self, "_on_achievement_incrementing_failed")
+		play_games_services.connect("_on_achievement_steps_set", self, "_on_achievement_steps_set")
+		play_games_services.connect("_on_achievement_steps_setting_failed", self, "_on_achievement_steps_setting_failed")
+		play_games_services.connect("_on_leaderboard_score_submitted", self, "_on_leaderboard_score_submitted")
+		play_games_services.connect("_on_leaderboard_score_submitting_failed", self, "_on_leaderboard_score_submitting_failed")
+		play_games_services.connect("_on_game_saved_success", self, "_on_game_saved_success")
+		play_games_services.connect("_on_game_saved_fail", self, "_on_game_saved_fail")
+		play_games_services.connect("_on_game_load_success", self, "_on_game_load_success")
+		play_games_services.connect("_on_game_load_fail", self, "_on_game_load_fail")
+		play_games_services.connect("_on_create_new_snapshot", self, "_on_create_new_snapshot")
+		play_games_services.connect("_on_player_info_loaded", self, "_on_player_info_loaded")
+		play_games_services.connect("_on_player_info_loading_failed", self, "_on_player_info_loading_failed")
 	
 		play_games_services.init(true,false,false,"")
 #		play_games_services.init(true,true,false,"") # Use this init if you want to get email of the player
@@ -114,7 +114,7 @@ func save_game() -> void:
 		}
 		
 	if play_games_services:
-		play_games_services.saveSnapshot("SNAPSHOT_NAME", JSON.new().stringify(data_to_save), "DESCRIPTION")
+		play_games_services.saveSnapshot("SNAPSHOT_NAME", to_json(data_to_save), "DESCRIPTION")
 
 
 func show_saved_games() -> void:
@@ -130,9 +130,7 @@ func load_player_info() -> void:
 # CALLBACKS
 # Sign-in / sign-out callbacks
 func _on_sign_in_success(userProfile_json: String) -> void:
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(userProfile_json)
-	var userProfile = test_json_conv.get_data()
+	var userProfile = parse_json(userProfile_json)
 	print("Sign in success ",userProfile)
 
 func _on_sign_in_failed(error_code: int) -> void:
@@ -186,14 +184,10 @@ func _on_game_saved_fail():
 	print("Game saved fail")
 
 func _on_game_load_success(data):
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(data)
-	var game_data: Dictionary = test_json_conv.get_data()
+	var game_data: Dictionary = parse_json(data)
 	print(data)
 	print("=====")
-	var test_json_conv2 = JSON.new()
-	test_json_conv2.parse(data)
-	print(test_json_conv.get_data())
+	print(parse_json(data))
 
 func _on_game_load_fail():
 	print("Game load fail")
@@ -204,9 +198,7 @@ func _on_create_new_snapshot(name:String):
 
 # Player Info Callbacks
 func _on_player_info_loaded(player_info: String):
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(player_info)
-	var player_info_dictionary: Dictionary = test_json_conv.get_data()
+	var player_info_dictionary: Dictionary = parse_json(player_info)
 	print(player_info_dictionary)
 
 func _on_player_info_loading_failed():

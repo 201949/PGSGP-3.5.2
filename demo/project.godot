@@ -6,26 +6,25 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=5
+config_version=4
+
+_global_script_classes=[  ]
+_global_script_class_icons={
+}
 
 [application]
 
 config/name="Demo"
 run/main_scene="res://Main.tscn"
-config/features=PackedStringArray("4.1")
 config/icon="res://icon.png"
 
 [display]
 
-window/size/viewport_width=600
-window/size/viewport_height=1024
-window/handheld/orientation=1
-
-[dotnet]
-
-project/assembly_name="Demo"
+window/size/width=600
+window/size/height=1024
+window/handheld/orientation="portrait"
 
 [rendering]
 
-textures/vram_compression/import_etc2_astc=true
-environment/defaults/default_environment="res://default_env.tres"
+quality/driver/driver_name="GLES2"
+environment/default_environment="res://default_env.tres"
