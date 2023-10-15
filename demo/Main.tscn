@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://cknv4jbc2gnq3"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/separation = 40
+
+[node name="SignInButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+text = "Sign In"
+
+[node name="SignOutButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+text = "Sign Out"
+
+[node name="CheckIfSignedInButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+text = "Check If Signed In"
+
+[node name="SaveGameButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+text = "Save game"
+
+[node name="ShowSavedGamesButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+text = "ShowSavedGames"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+text = "Load saved game"
+
+[node name="ShowLeaderBoardsButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Show leaderboards"
+
+[node name="AchievementUnlockButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Unlock achievement"
+
+[connection signal="pressed" from="VBoxContainer/SignInButton" to="." method="_on_SignInButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/SignOutButton" to="." method="_on_SignOutButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/CheckIfSignedInButton" to="." method="_on_CheckIfSignedInButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/SaveGameButton" to="." method="_on_SaveGameButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/ShowSavedGamesButton" to="." method="_on_ShowSavedGamesButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ShowLeaderBoardsButton" to="." method="_on_ShowLeaderBoardsButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/AchievementUnlockButton" to="." method="_on_AchievementUnlockButton_pressed"]
