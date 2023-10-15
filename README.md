@@ -1,5 +1,6 @@
 # Google Play Games Services Plugin for Godot 3.5.2
 This is an Android Play Games Services plugin for Godot Game Engine 3.5.2
+The repository forked from Finepointcgi and from mauville-technologies. Based on PGSGP cgisca
 
 [![Android](https://img.shields.io/badge/Platform-Android-brightgreen.svg)](https://developer.android.com)
 [![Godot](https://img.shields.io/badge/Godot%20Engine-3.5.2-blue.svg)](https://github.com/godotengine/godot/)
