@@ -1,15 +1,15 @@
-# Google Play Games Services Plugin for Godot 4
-This is an Android Play Games Services plugin for Godot Game Engine 4.1.
+# Google Play Games Services Plugin for Godot 3
+This is an Android Play Games Services plugin for Godot Game Engine 3.5.2
 
 [![Android](https://img.shields.io/badge/Platform-Android-brightgreen.svg)](https://developer.android.com)
 [![Godot](https://img.shields.io/badge/Godot%20Engine-3.5.2-blue.svg)](https://github.com/godotengine/godot/)
-[![PGS](https://img.shields.io/badge/Play%20Games%20Services-20.0.1-green.svg)](https://developers.google.com/games/services/android/quickstart)
+[![PGS](https://img.shields.io/badge/Play%20Games%20Services-23.1.0-green.svg)](https://developers.google.com/games/services/android/quickstart)
 [![MIT license](https://img.shields.io/badge/License-MIT-yellowgreen.svg)](https://lbesson.mit-license.org/)
 
 ### Supported features:
 - Sign-in/Sign out
 - Achievements
-- Leaderboards
+- Leaderboards (with player`s high score and rank)
 - Events
 - Player Stats
 - Player Info
@@ -101,6 +101,8 @@ if Engine.has_singleton("GodotPlayGamesServices"):
   play_games_services.connect("_on_achievement_incrementing_failed", self, "_on_achievement_incrementing_failed") # achievement: String
   play_games_services.connect("_on_achievement_info_loaded", self, "_on_achievement_info_loaded") # achievements_json : String
   play_games_services.connect("_on_achievement_info_load_failed", self, "_on_achievement_info_load_failed")
+  play_games_services.connect("_on_leaderboard_score_retrieved", self, "_on_leaderboard_score_retrieved") # playerstats: String (JSON)
+  play_games_services.connect("_on_leaderboard_score_retrieve_failed", self, "_on_leaderboard_score_retrieve_failed") 
   play_games_services.connect("_on_leaderboard_score_submitted", self, "_on_leaderboard_score_submitted") # leaderboard_id: String
   play_games_services.connect("_on_leaderboard_score_submitting_failed", self, "_on_leaderboard_score_submitting_failed") # leaderboard_id: String
   play_games_services.connect("_on_game_saved_success", self, "_on_game_saved_success") # no params
@@ -254,7 +256,22 @@ play_games_services.showLeaderBoard("LEADERBOARD_ID")
 
 play_games_services.showAllLeaderBoards()
 ```
+##### Get player high score and rank
+```gdscript
+# Span can be: TIME_SPAN_DAILY, TIME_SPAN_WEEKLY, or TIME_SPAN_ALL_TIME
+# LeaderboardCollection can be:  COLLECTION_PUBLIC or COLLECTION_FRIENDS
+play_games_services.retrieveLeaderboardScore("LEADERBOARD_ID", "ALL_TIME", "ALL")
 
+func _on_leaderboard_score_retrieved(leaderboardId : String, playerScore : String):
+	var score_dictionary: Dictionary = parse_json(playerScore)
+	# Using below keys you can retrieve data about a player’s in-game activity
+	score_dictionary["score"] # Player high score
+	score_dictionary["rank"] # Player rank
+	pass
+
+func _on_leaderboard_score_retrieve_failed(leaderboardId : String):
+	pass
+```
 #### Events
 ##### Submit event
 ```gdscript
