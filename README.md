@@ -19,7 +19,7 @@ The repository forked from Finepointcgi and from mauville-technologies. Based on
 ## Getting started
 Before using this plugin please follow instructions on [Setting Up Google Play Games Services](https://developers.google.com/games/services/console/enabling) official guide.
 ### Set up
-- Download `GodotPlayGamesServices.release.aar` and `GodotPlayGamesServices.gdap` from [releases](https://github.com/cgisca/PGSGP/releases) page.
+- Download `GodotPlayGamesServices.release.aar` and `GodotPlayGamesServices.gdap` from [releases](https://github.com/201949/PGSGP-3.5.2/releases/tag/3.5.2-201949) page.
 - Move the plugin configuration file (`GodotPlayGamesServices.gdap`) and the binary (`GodotPlayGamesServices.release.aar`) downloaded from the previous step to the Godot project's res://android/plugins directory.
 - Enable plugin by accessing `Project` -> `Export`, Plugins section. Follow the [image](https://docs.godotengine.org/en/stable/_images/android_export_preset_plugins_section.png).
 - Go to res://android/build directory. Add below lines to `AndroidManifest.xml`:
